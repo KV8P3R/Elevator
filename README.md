@@ -1,2 +1,88 @@
 # Elevator
-this is one of my first programs about chosing floor in the elevator. I made this for fun at the free time.
+def enter_the_elevator():
+    print("You are on the First floor")
+
+    people = int(input("Enter the number of people (min. 1, max. 6): "))
+
+    if people < 1 or people > 6:
+        print("Invalid number of people!")
+        return None
+
+    print("Elevator is closing")
+    return people
+
+
+def floor_choice():
+    floor = int(input("Select your floor (1–6): "))
+
+    if floor < 1 or floor > 6:
+        print("Invalid floor number!")
+        return None
+
+    match floor:
+        case 1:
+            print("You are on the First floor")
+        case 2:
+            print("You are on the Second floor")
+        case 3:
+            print("You are on the Third floor")
+        case 4:
+            print("You are on the Fourth floor")
+        case 5:
+            print("You are on the Fifth floor")
+        case 6:
+            print("You are on the Sixth floor")
+
+    return floor
+
+
+def floor_choice2(floor):
+    print("You are on the floor number:", floor)
+    print("What do you want to do? 1 - Change floor number, 2 - leave elevator")
+
+    choice = int(input("Enter your choice: "))
+
+    match choice:
+        case 1:
+            print("Changing floor...")
+            return floor_choice()
+
+        case 2:
+            print("See you next time!")
+            exit()
+
+
+def main_menu():
+    current_floor = None
+
+    while True:
+        print("\n=== MAIN MENU ===")
+        print("1. Enter the elevator")
+        print("2. Floor Choice")
+        print("3. Floor Choice2")
+        print("4. Exit")
+
+        choice = int(input("Enter your choice: "))
+
+        match choice:
+            case 1:
+                enter_the_elevator()
+
+            case 2:
+                current_floor = floor_choice()
+
+            case 3:
+                if current_floor is None:
+                    print("You must choose a floor first!")
+                else:
+                    current_floor = floor_choice2(current_floor)
+
+            case 4:
+                print("Exiting program...")
+                exit()
+
+            case _:
+                print("Invalid choice!")
+
+
+main_menu()
